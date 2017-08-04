@@ -14,7 +14,11 @@ const corsOptions = {
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.use(session({ secret: config.sessionSecret }));
+app.use(session({
+  secret: config.sessionSecret,
+  saveUninitialized: false,
+  resave: false
+}));
 
 app.get('/api/findFriend', profileCtrl.findFriend);
 
